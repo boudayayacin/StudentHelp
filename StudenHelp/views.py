@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm 
+from .forms import LikeForm
 from .models import Poste, User, Recommandation, Evenement, EvenClub, EvenSocial, Transport, Logement, Stage
 from .models import Reaction
 from django.contrib.auth import login, authenticate
@@ -420,6 +421,17 @@ class Addcomment(CreateView):
     model = Reaction
     form_class = CommentForm
     template_name = 'add_comment.html'
+
+    def form_valid(self, form):
+        form.instance.users = self.request.user
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+    success_url = reverse_lazy('home')
+
+class Addlike(CreateView):
+    model = Reaction
+    form_class = LikeForm
+    template_name = 'add_like.html'
 
     def form_valid(self, form):
         form.instance.users = self.request.user

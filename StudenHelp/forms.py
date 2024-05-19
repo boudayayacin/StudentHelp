@@ -119,4 +119,8 @@ class LogementForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Reaction
-        fields = ('comment', 'like')
+        fields = ['comment']
+class LikeForm(forms.ModelForm):
+    class Meta:
+        model = Reaction
+        fields = ['like']

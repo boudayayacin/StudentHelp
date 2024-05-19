@@ -6,7 +6,8 @@ from django.conf import settings
 from .views import ModifierPoste, SupprimerPoste, ModifierRecommandation, ModifierEvenement, ModifierEvenClub
 from .views import SupprimerRecommandation, SupprimerEvenement, SupprimerEvenClub, SupprimerEvenSocial
 from .views import SupprimerTransport, SupprimerStage, DetailRecommandation , SupprimerLogement
-from .views import ModifierEvenSocial, ModifierTransport, ModifierLogement, ModifierStage, Addcomment
+from .views import ModifierEvenSocial, ModifierTransport, ModifierLogement, ModifierStage, Addcomment 
+from .views import Addlike
 urlpatterns = [
     path('', views.index, name='index'),
     path('home/', views.home, name='home'),
@@ -46,6 +47,7 @@ urlpatterns = [
     path('<int:pk>/Supprimer_Stage/', SupprimerStage.as_view(), name='supprimer_Stage'),
     path('<int:pk>/Supprimer_Logement/', SupprimerLogement.as_view(), name='supprimer_Logement'),
     path('<int:pk>/', DetailRecommandation.as_view(), name='Drec'),
-    path('post/<int:pk>/comment', Addcomment.as_view(), name='add_comment')
+    path('post/<int:pk>/comment', Addcomment.as_view(), name='add_comment'),
+    path('post/<int:pk>/like', Addlike.as_view(), name='add_like')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

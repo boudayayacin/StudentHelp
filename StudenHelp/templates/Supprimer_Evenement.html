@@ -5,6 +5,20 @@
     <title>Supprimer : {{ Poste.title }}</title>
   </head>
   <body>
+    <style>
+      h1{
+        text-align: center;
+      }
+      button{
+        text-align: center;
+        width: 100px;
+        margin: 0 auto;
+      }
+      form {
+        width: 400px;
+        margin: 0 auto;
+      }
+    </style>
     <h1>Êtes-vous sûr de vouloir supprimer :</h1>
     <form method="post">
       {% csrf_token %}
