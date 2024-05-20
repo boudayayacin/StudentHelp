@@ -238,9 +238,10 @@ h5{
                 </div>
                 {% else %} 
                 {% for comment in post.comments.all %}
-              
+                {% if comment.comment %}
                     <img id="comi" src="../../media/pdi.webp" alt=""> <strong>{{ comment.users }}</strong><br>
                        <strong>{{ comment.comment }}</strong><br>
+                       {% endif %}
                     {% endfor %}
                     <a id="bb" href="{% url 'add_comment' post.pk %}">Add comments</a>
 

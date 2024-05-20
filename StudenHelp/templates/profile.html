@@ -140,6 +140,9 @@
                 display: flex;
                 flex-direction: column;
             }
+            .icon{
+                margin-bottom: 10px;
+            }
             .new-post {
                 display: flex;
                 flex-direction: column;
@@ -148,21 +151,28 @@
                 margin-right: 200px;
                 
                 background-color: #fff;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
                 padding: 20px;
                 margin-bottom: 40px;
                 border-radius: 20px;
                 position: relative;
                 margin-top: 40px;
             }
-            body{
+            /* body{
                 background-color: rgb(233, 231, 231);
-            }
+            } */
             .svg{
             position: absolute;
             top: 20px;
             right: 20px;
             }
+            .tch{
+    font-weight: bold;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
     </style>
     
         <body>
@@ -197,7 +207,7 @@
                                         <p class="card-text">{{ post.date }} <p>{{ post.type }}</p></p>
                                     </div>
                                     {% if post.image %}
-                                        <div class="card-body">
+                                        <div class="card-body" >
                                             <img  src="/media/{{post.image}}" width="150px" height="120px">
                                         </div>
                                         {% endif %}   
@@ -238,11 +248,13 @@
                                         </div>
                                         {% elif post.transport %}
                                         <div class="sous-section">
-                                        <p class="card-text">{{ post.transport.depart }}</p>                          
-                                        <p class="card-text">{{ post.transport.destination }}</p>
-                                        <p class="card-text">{{ post.transport.heure_dep }}</p>                      
-                                        <p class="card-text">{{ post.transport.nbre_sieges }}</p>
-                                        <p class="card-text">{{ post.transport.contactinfo }}</p>
+                                            <p class="card-text"> <span class="tch">Depart</span> {{ post.transport.depart }}</p>                          
+                                            <p class="card-text"><span class="tch">Destination</span> {{ post.transport.destination }}</p>
+                                            <p class="card-text">Heure de Depart  {{ post.transport.heure_dep }}</p>                      
+                                            <p class="card-text"><span class="tch">Nombre de sieges </span> {{ post.transport.nbre_sieges }}</p>
+                                            <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                                              </svg>{{ post.transport.contactinfo }}</p>
                                         <div class="svg">
                                             <a class="sup" id="sup" href="{% url 'supprimer_Transport' post.pk %}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -265,9 +277,11 @@
                                         </div>
                                     {% elif post.logement %}
                                     <div class="sous-section"> 
-                                        <p class="card-text" >Locaalisation : {{ post.logement.localisation }}</p>
-                                        <p class="card-text">description : {{ post.logement.description }}</p>
-                                        <p class="card-text">contactinfo : {{ post.logement.contactinfo }}</p>
+                                        <p class="card-text" ><span class="tch">Localisation</span> {{ post.logement.localisation }}</p>
+                        <p class="card-text"><span class="tch">Description</span> {{ post.logement.description }}</p>
+                        <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                          </svg> contactinfo : {{ post.logement.contactinfo }}</p>
                                         <div class="svg">
 
                                             <a class="sup" id="sup" href="{% url 'supprimer_Logement' post.pk %}">
@@ -288,12 +302,13 @@
                                 </div>
                                 {% elif post.stage %}
                                 <div class="sous-section">
-                                    <p class="card-text" >{{ post.stage.specialite }} </p>
-                                    <p class="card-text">{{ post.stage.typestg }}</p>
-                                    <p class="card-text">{{ post.stage.societe }}</p>
-                                    <p class="card-text">{{ post.stage.sujet }}</p>
-                                    <p class="card-text">{{ post.stage.contactinfo }}</p>
-                                    <p class="card-text">{{ post.stage.duree }}</p>
+                                    <p class="card-text" ><span class="tch">Specialite</span> {{ post.stage.specialite }} </p>
+                                    <p class="card-text"><span class="tch">Nom de la Societé</span> {{ post.stage.societe }}</p>
+                    <p class="card-text"><span class="tch">Sujet </span> {{ post.stage.sujet }}</p>
+                    <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                      </svg>  {{ post.stage.contactinfo }}</p>
+                    <p class="card-text"><span class="tch">Duree </span> {{ post.stage.duree }}</p>
                                     <div class="svg">
 
                                         <a class="sup" id="sup" href="{% url 'supprimer_Stage' post.pk %}">
@@ -317,10 +332,12 @@
                                 </div>
                                 {% elif post.evenement  %}
                                 <div class="sous-section">
-                                    <p class="card-text" >{{ post.evenement.intitule }}  </p>
-                                    <p class="card-text">{{ post.evenement.description }}</p>
-                                    <p class="card-text">{{ post.evenement.lieu }}</p>
-                                    <p class="card-text"> {{ post.evenement.contactinfo }}</p>
+                                    <p class="card-text" ><span class="tch">Intitule </span> {{ post.evenement.intitule }}  </p>
+                    <p class="card-text"><span class="tch">Description</span> {{ post.evenement.description }}</p>
+                    <p class="card-text"><span class="tch">Lieu </span> {{ post.evenement.lieu }}</p>
+                    <p class="card-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                      </svg> {{ post.evenement.contactinfo }}</p>
                                     <div class="svg">
 
                                         <a class="sup" id="sup" href="{% url 'supprimer_Evenement' post.pk %}">
@@ -344,10 +361,10 @@
                                 </div>
                                 {% elif post.evenemnt.eventSocial %}
                                 <div class="sous-section">
-                                    <p class="card-text" >{{ evenemnt.eventSocial.intitule }}  </p>
-                                    <p class="card-text">{{ evenemnt.eventSocial.description }}</p>
-                                    <p class="card-text">{{ evenemnt.eventSocial.lieu }}</p>
-                                    <p class="card-text">{{ evenemnt.eventSocial.prix }}  </p>
+                                    <p class="card-text" ><span class="tch">Intitule</span> {{ evenemnt.eventSocial.intitule }}  </p>
+                    <p class="card-text"><span class="tch">Description</span> {{ evenemnt.eventSocial.description }}</p>
+                    <p class="card-text"><span class="tch">Lieu </span> {{ evenemnt.eventSocial.lieu }}</p>
+                    <p class="card-text"><span class="tch">Prix </span> {{ evenemnt.eventSocial.prix }} DT   </p>
                                     <div class="svg">
 
                                         <a class="sup" id="sup" href="{% url 'supprimer_EventSocial' post.pk %}">
@@ -371,11 +388,13 @@
                                 </div>
                                 {% elif post.evenemnt.eventClub %}
                                 <div class="sous-section">
-                                    <p class="card-text" >Intitulé: {{ evenemnt.eventClub.intitule }}</p>
-                                    <p class="card-text">intitule : {{ evenemnt.eventClub.intitule  }}</p>
-                                    <p class="card-text">Lieu: {{ evenemnt.eventClub.lieu }}</p>
-                                    <p class="card-text">Contact info: {{ evenemnt.eventClub.contactinfo }}</p>
-                                    <p class="card-text">Club: {{ evenemnt.eventClub.club }}</p>
+                                    <p class="card-text" >Intitulé {{ evenemnt.eventClub.intitule }}</p>
+                    <p class="card-text">intitule  {{ evenemnt.eventClub.intitule  }}</p>
+                    <p class="card-text">Lieu {{ evenemnt.eventClub.lieu }}</p>
+                    <p class="card-text"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                      </svg>Contact info {{ evenemnt.eventClub.contactinfo }}</p>
+                    <p class="card-text">Club: {{ evenemnt.eventClub.club }}</p>
                                     <div class="svg">
 
                                         <a class="sup" id="sup" href="{% url 'supprimer_EventClub' post.pk %}">
@@ -406,7 +425,7 @@
         <strong>{{ comment.comment }}</strong><br>
         {% endif %}
         {% empty %}
-        <p>No Comment</p>
+        <p>aucun commentaire</p>
         {% endfor %}
         
                             </div>
